@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.api.health import router as health_router
 
 app = FastAPI(
     title="Music App API",
@@ -6,10 +7,4 @@ app = FastAPI(
     version="1.0.0"
 )
 
-
-@app.get("/health")
-def health_check():
-    return {
-        "status": "ok",
-        "message": "Music App Backend is running"
-    }
+app.include_router(health_router)
