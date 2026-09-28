@@ -1,10 +1,13 @@
 from fastapi import FastAPI
+
 from app.api.health import router as health_router
+from app.core.config import settings
+
 
 app = FastAPI(
-    title="Music App API",
+    title=settings.app_name,
     description="Backend API for Music App MVP Version 1",
-    version="1.0.0"
+    version=settings.app_version
 )
 
 app.include_router(health_router)
