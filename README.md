@@ -6,7 +6,7 @@ An AI-powered music recommendation application that detects facial emotions and 
 
 **Current Version:** MVP Version 1
 **Development Status:** In Progress
-**Current Backend Progress:** Step 3 completed
+**Current Backend Progress:** Step 6 completed
 **Frontend Integration:** Not started yet
 
 ---
@@ -54,6 +54,9 @@ React Recommendation UI
 * Python
 * FastAPI
 * Uvicorn
+* SQLAlchemy
+* Pydantic
+* Pydantic Settings
 
 ### Database
 
@@ -132,19 +135,104 @@ The MVP currently uses five emotion classes:
 * [x] `/health` verified through Swagger
 * [x] Changes committed and pushed to GitHub
 
-**Latest Backend Commit:**
+### Step 4 — Configuration & Environment Variables
+
+* [x] `.env` configuration created
+* [x] `.env.example` created
+* [x] Environment variables loaded using Pydantic Settings
+* [x] Application name configured through environment variables
+* [x] Application version configured through environment variables
+* [x] Environment mode configured
+* [x] Database URL configured through environment variables
+* [x] `.env` excluded from Git
+
+### Step 5 — PostgreSQL / Supabase Connection
+
+* [x] Supabase PostgreSQL project created
+* [x] PostgreSQL connection configured
+* [x] SQLAlchemy installed
+* [x] Psycopg PostgreSQL driver installed
+* [x] Database engine created
+* [x] Database connection tested
+* [x] `SELECT 1` database test successful
+
+### Step 6 — Database Models & Tables
+
+Database architecture completed with seven application tables:
+
+* [x] `users`
+* [x] `songs`
+* [x] `recommendations`
+* [x] `favorites`
+* [x] `playlists`
+* [x] `playlist_songs`
+* [x] `listening_history`
+
+#### Database Relationships
 
 ```text
-8cce388 - Refactor backend into modular structure
+users
+ ├──< recommendations >── songs
+ ├──< favorites >───────── songs
+ ├──< playlists
+ │       └──< playlist_songs >── songs
+ └──< listening_history >── songs
 ```
+
+#### Database Constraints
+
+* [x] Primary keys
+* [x] Foreign keys
+* [x] `ON DELETE CASCADE` relationships
+* [x] NOT NULL constraints
+* [x] UNIQUE constraints
+* [x] CHECK constraints
+* [x] Emotion validation
+* [x] Recommendation confidence validation
+* [x] User role validation
+* [x] Listening duration validation
+* [x] Playlist position validation
+
+#### Database Indexes
+
+* [x] Song emotion index
+* [x] Recommendation indexes
+* [x] Favorite user index
+* [x] Playlist user index
+* [x] Playlist-song indexes
+* [x] Listening-history indexes
+
+#### Row Level Security
+
+* [x] RLS enabled on all seven application tables
+* [x] Database security structure verified
+* [x] Detailed user-specific RLS policies deferred until Supabase Auth integration
+
+#### Seed / Test Data
+
+* [x] Five demo songs created
+* [x] Supabase Auth test user created
+* [x] Matching application user created
+* [x] Favorite test data created
+* [x] Playlist test data created
+* [x] Playlist songs created
+* [x] Recommendation test data created
+* [x] Listening history test data created
+
+#### Database Testing
+
+* [x] Invalid song emotion rejected
+* [x] Invalid recommendation confidence rejected
+* [x] Duplicate favorite rejected
+* [x] Invalid user foreign key rejected
+* [x] Duplicate playlist song rejected
+* [x] Missing song title rejected
+* [x] Invalid user role rejected
 
 ---
 
 ## Upcoming Backend Work
 
-* [ ] Step 4 — Configuration & Environment Variables
-* [ ] Step 5 — PostgreSQL / Supabase Connection
-* [ ] Step 6 — Database Models / Tables
 * [ ] Step 7 — Pydantic Schemas / API Contracts
 * [ ] Step 8 — Music Data & Songs API
 * [ ] Step 9 — Recommendation Logic
@@ -196,6 +284,8 @@ Music-App/
 │
 └── backend/
     │
+    ├── .env
+    ├── .env.example
     ├── .venv/
     ├── requirements.txt
     │
@@ -208,7 +298,9 @@ Music-App/
         │   └── health.py
         │
         ├── core/
-        │   └── __init__.py
+        │   ├── __init__.py
+        │   ├── config.py
+        │   └── database.py
         │
         ├── models/
         │   └── __init__.py
@@ -219,6 +311,8 @@ Music-App/
         └── services/
             └── __init__.py
 ```
+
+> Note: `.env` and `.venv/` are excluded from Git through `.gitignore`.
 
 ---
 
@@ -261,6 +355,26 @@ http://127.0.0.1:8000/docs
 
 ---
 
+# Database
+
+The application uses PostgreSQL through Supabase.
+
+The backend connects to PostgreSQL using SQLAlchemy and Psycopg.
+
+```text
+FastAPI
+   ↓
+SQLAlchemy
+   ↓
+Psycopg
+   ↓
+PostgreSQL / Supabase
+```
+
+Database credentials are stored in environment variables and are not committed to GitHub.
+
+---
+
 # Development Rules
 
 1. React must communicate with the backend through REST APIs.
@@ -277,6 +391,7 @@ http://127.0.0.1:8000/docs
 12. Frontend work should modify only the `frontend/` folder.
 13. Backend work should modify only the `backend/` folder.
 14. Major milestones should be committed and pushed to GitHub.
+15. Database changes should be documented in the project README when a major database milestone is completed.
 
 ---
 
@@ -318,6 +433,6 @@ GitHub master
 
 # Current Next Task
 
-**Backend — Step 4: Configuration & Environment Variables**
+**Backend — Step 7: Pydantic Schemas / API Contracts**
 
-The next backend milestone is to configure environment variables safely before connecting the application to PostgreSQL/Supabase.
+The next backend milestone is to define request and response schemas for the API before implementing the music and application endpoints.
