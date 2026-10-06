@@ -27,3 +27,6 @@ Thumbs.db
 # Temporary authentication testing files
 backend/test_supabase_auth.py
 backend/app/api/auth_test.py
+
+# Temporary admin testing file
+backend/app/api/admin_test.py

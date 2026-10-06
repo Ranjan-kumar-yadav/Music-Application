@@ -5,8 +5,11 @@ An AI-powered music recommendation application that detects facial emotions and 
 ## Project Status
 
 **Current Version:** MVP Version 1
+
 **Development Status:** In Progress
-**Current Backend Progress:** Step 10.4 completed
+
+**Current Backend Progress:** Step 10.7 completed
+
 **Frontend Integration:** Not started yet
 
 ---
@@ -59,6 +62,7 @@ React Recommendation UI
 * Pydantic Settings
 * PyJWT
 * Cryptography
+* Supabase Python SDK
 
 ### Database
 
@@ -71,6 +75,8 @@ React Recommendation UI
 * JWT access tokens
 * ES256 / ECC (P-256) JWT verification
 * JWKS-based public key verification
+* HTTP Bearer authentication
+* Role-based authorization
 
 ### AI / Machine Learning
 
@@ -270,7 +276,7 @@ users
 * [x] `/health/db` endpoint created
 * [x] Database health check verified
 
-### Step 10 — Authentication & User API
+### Step 10 — Authentication, Authorization & User API
 
 #### Step 10.1 — Authentication Dependencies
 
@@ -308,13 +314,40 @@ users
 * [x] Application user profile linked with Supabase Auth user
 * [x] `GET /users/me` tested through Postman
 
+#### Step 10.5 — Role / Admin Verification
+
+* [x] `get_current_admin()` authorization dependency created
+* [x] Authenticated user linked to application user record
+* [x] Application role checked from `public.users`
+* [x] Non-admin access blocked with `403 Forbidden`
+* [x] Admin access successfully verified with `200 OK`
+* [x] Temporary `/admin-test` endpoint created for testing
+* [x] Test admin role restored to `user`
+
+#### Step 10.6 — Postman Authentication Testing
+
+* [x] `/auth-test` tested with valid access token
+* [x] `/users/me` tested with valid access token
+* [x] `/admin-test` tested with normal user
+* [x] `/admin-test` tested with admin user
+* [x] Invalid access token tested
+* [x] `401 Unauthorized` response verified
+* [x] `403 Forbidden` response verified
+* [x] Authentication and authorization flow verified through Postman
+
+#### Step 10.7 — Authentication Git Checkpoint
+
+* [x] Authentication changes reviewed
+* [x] Temporary authentication testing files excluded from Git
+* [x] Temporary admin testing file excluded from Git
+* [x] README updated
+* [x] Authentication milestone committed
+* [x] Changes pushed to GitHub `master`
+
 ---
 
 ## Upcoming Backend Work
 
-* [ ] Step 10.5 — Role / Admin Verification
-* [ ] Step 10.6 — Postman Authentication Testing
-* [ ] Step 10.7 — Authentication Git Checkpoint
 * [ ] Step 11 — Music Data & Songs API
 * [ ] Step 12 — Favorites & Playlist APIs
 * [ ] Step 13 — Listening History API
@@ -359,6 +392,7 @@ Current project structure:
 
 ```text
 Music-App/
+
 │
 ├── README.md
 ├── .gitignore
@@ -371,6 +405,7 @@ Music-App/
     ├── .env.example
     ├── .venv/
     ├── requirements.txt
+    ├── test_supabase_auth.py
     │
     └── app/
         ├── __init__.py
@@ -381,7 +416,8 @@ Music-App/
         │   ├── dependencies.py
         │   ├── health.py
         │   ├── users.py
-        │   └── auth_test.py
+        │   ├── auth_test.py
+        │   └── admin_test.py
         │
         ├── core/
         │   ├── __init__.py
@@ -414,7 +450,7 @@ Music-App/
             └── user_service.py
 ```
 
-> Note: `auth_test.py` and `test_supabase_auth.py` are temporary authentication testing files and are excluded from Git through `.gitignore`.
+> Note: `auth_test.py`, `admin_test.py`, and `test_supabase_auth.py` are temporary authentication/testing files and are excluded from Git through `.gitignore`.
 
 ---
 
@@ -529,6 +565,52 @@ Authorization: Bearer <Supabase access token>
 
 The endpoint returns the application profile from `public.users` after validating the Supabase access token.
 
+## Admin Test Endpoint
+
+**Method:**
+
+```text
+GET
+```
+
+**Endpoint:**
+
+```text
+/admin-test
+```
+
+This endpoint was created temporarily to verify role-based admin authorization and is not tracked in Git.
+
+**Normal user response:**
+
+```json
+{
+    "detail": "Admin access required"
+}
+```
+
+**Expected status:**
+
+```text
+403 Forbidden
+```
+
+**Admin user response:**
+
+```json
+{
+    "admin_access": true,
+    "user_id": "user-uuid",
+    "role": "admin"
+}
+```
+
+**Expected status:**
+
+```text
+200 OK
+```
+
 ---
 
 # Authentication Flow
@@ -550,12 +632,16 @@ get_current_user()
       ↓
 public.users
       ↓
-Authenticated User Profile
+Role Verification
+      ↓
+Authenticated / Admin API
 ```
 
 The backend does not store user passwords.
 
 Supabase Auth manages authentication credentials, while `public.users` stores application-specific user information such as name and role.
+
+Admin-only APIs use the application user's role from `public.users`. A user with role `user` receives `403 Forbidden` when accessing an admin-only endpoint.
 
 ---
 
@@ -639,6 +725,6 @@ GitHub master
 
 # Current Next Task
 
-**Backend — Step 10.5: Role / Admin Verification**
+**Backend — Step 11: Music Data & Songs API**
 
-The next backend milestone is to create a reusable authorization dependency that verifies whether the authenticated application user has the required role, especially `admin`, before allowing admin-only APIs.
+The next backend milestone is to create the Songs API for retrieving music data from the `songs` table. The API will be designed for the React frontend and will use the existing authentication/database architecture where required.
