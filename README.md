@@ -6,7 +6,7 @@ An AI-powered music recommendation application that detects facial emotions and 
 
 **Current Version:** MVP Version 1
 **Development Status:** In Progress
-**Current Backend Progress:** Step 6 completed
+**Current Backend Progress:** Step 10.4 completed
 **Frontend Integration:** Not started yet
 
 ---
@@ -57,11 +57,20 @@ React Recommendation UI
 * SQLAlchemy
 * Pydantic
 * Pydantic Settings
+* PyJWT
+* Cryptography
 
 ### Database
 
 * PostgreSQL
 * Supabase (managed PostgreSQL)
+
+### Authentication
+
+* Supabase Auth
+* JWT access tokens
+* ES256 / ECC (P-256) JWT verification
+* JWKS-based public key verification
 
 ### AI / Machine Learning
 
@@ -140,10 +149,14 @@ The MVP currently uses five emotion classes:
 * [x] `.env` configuration created
 * [x] `.env.example` created
 * [x] Environment variables loaded using Pydantic Settings
-* [x] Application name configured through environment variables
-* [x] Application version configured through environment variables
+* [x] Application name configured
+* [x] Application version configured
 * [x] Environment mode configured
-* [x] Database URL configured through environment variables
+* [x] Database URL configured
+* [x] Supabase URL configured
+* [x] Supabase publishable/anon key configured
+* [x] Supabase JWT issuer configured
+* [x] Supabase JWKS URL configured
 * [x] `.env` excluded from Git
 
 ### Step 5 — PostgreSQL / Supabase Connection
@@ -206,7 +219,7 @@ users
 
 * [x] RLS enabled on all seven application tables
 * [x] Database security structure verified
-* [x] Detailed user-specific RLS policies deferred until Supabase Auth integration
+* [x] Detailed user-specific RLS policies deferred until application authorization is fully implemented
 
 #### Seed / Test Data
 
@@ -229,21 +242,91 @@ users
 * [x] Missing song title rejected
 * [x] Invalid user role rejected
 
+### Step 7 — Pydantic Schemas / API Contracts
+
+* [x] User response schema
+* [x] Song response schema
+* [x] Favorite request/response schemas
+* [x] Playlist request/response schemas
+* [x] Playlist-song request/response schemas
+* [x] Recommendation request/response schemas
+* [x] Listening-history request/response schemas
+* [x] Pydantic schema validation verified
+
+### Step 8 — SQLAlchemy Models
+
+* [x] SQLAlchemy `Base` configured
+* [x] Seven database models created
+* [x] Model relationships configured
+* [x] Database tables verified through SQLAlchemy
+* [x] All seven models imported successfully
+
+### Step 9 — Database Session & Dependency Injection
+
+* [x] SQLAlchemy `SessionLocal` configured
+* [x] Database session dependency created
+* [x] Automatic session closing implemented
+* [x] Database dependency tested
+* [x] `/health/db` endpoint created
+* [x] Database health check verified
+
+### Step 10 — Authentication & User API
+
+#### Step 10.1 — Authentication Dependencies
+
+* [x] PyJWT installed
+* [x] Cryptography installed
+* [x] Supabase Python package installed
+* [x] Authentication dependencies added to `requirements.txt`
+
+#### Step 10.2 — Supabase JWT Verification
+
+* [x] Supabase JWT configuration added
+* [x] Current ECC / P-256 signing key identified
+* [x] JWKS-based verification configured
+* [x] JWT issuer validation configured
+* [x] `authenticated` audience validation configured
+* [x] ES256 JWT verification implemented
+* [x] JWKS endpoint tested successfully
+* [x] Supabase login tested successfully
+
+#### Step 10.3 — Current Authenticated User Dependency
+
+* [x] HTTP Bearer authentication configured
+* [x] `get_current_user()` dependency created
+* [x] JWT access token verified through dependency
+* [x] User ID extracted from JWT `sub` claim
+* [x] Authenticated endpoint tested successfully
+
+#### Step 10.4 — User API
+
+* [x] User service created
+* [x] Current user lookup implemented
+* [x] `GET /users/me` endpoint created
+* [x] Authentication dependency integrated
+* [x] Database dependency integrated
+* [x] Application user profile linked with Supabase Auth user
+* [x] `GET /users/me` tested through Postman
+
 ---
 
 ## Upcoming Backend Work
 
-* [ ] Step 7 — Pydantic Schemas / API Contracts
-* [ ] Step 8 — Music Data & Songs API
-* [ ] Step 9 — Recommendation Logic
-* [ ] Step 10 — MobileNetV2 Model Integration
-* [ ] Step 11 — Emotion Prediction API
-* [ ] Step 12 — Recommendation API
-* [ ] Step 13 — Complete Backend Flow
-* [ ] Step 14 — Validation & Error Handling
-* [ ] Step 15 — Complete Postman Testing
-* [ ] Step 16 — Backend Cleanup & Final Testing
-* [ ] Step 17 — Backend MVP Checkpoint
+* [ ] Step 10.5 — Role / Admin Verification
+* [ ] Step 10.6 — Postman Authentication Testing
+* [ ] Step 10.7 — Authentication Git Checkpoint
+* [ ] Step 11 — Music Data & Songs API
+* [ ] Step 12 — Favorites & Playlist APIs
+* [ ] Step 13 — Listening History API
+* [ ] Step 14 — Recommendation Logic
+* [ ] Step 15 — MobileNetV2 Model Integration
+* [ ] Step 16 — Emotion Prediction API
+* [ ] Step 17 — Recommendation API
+* [ ] Step 18 — Complete Backend Flow
+* [ ] Step 19 — Validation & Error Handling
+* [ ] Step 20 — Complete Postman Testing
+* [ ] Step 21 — Backend Cleanup & Final Testing
+* [ ] Step 22 — Backend MVP Checkpoint
 
 ---
 
@@ -295,24 +378,43 @@ Music-App/
         │
         ├── api/
         │   ├── __init__.py
-        │   └── health.py
+        │   ├── dependencies.py
+        │   ├── health.py
+        │   ├── users.py
+        │   └── auth_test.py
         │
         ├── core/
         │   ├── __init__.py
         │   ├── config.py
-        │   └── database.py
+        │   ├── database.py
+        │   └── security.py
         │
         ├── models/
-        │   └── __init__.py
+        │   ├── __init__.py
+        │   ├── user.py
+        │   ├── song.py
+        │   ├── favorite.py
+        │   ├── playlist.py
+        │   ├── playlist_song.py
+        │   ├── recommendation.py
+        │   └── listening_history.py
         │
         ├── schemas/
-        │   └── __init__.py
+        │   ├── __init__.py
+        │   ├── user.py
+        │   ├── song.py
+        │   ├── favorite.py
+        │   ├── playlist.py
+        │   ├── playlist_song.py
+        │   ├── recommendation.py
+        │   └── listening_history.py
         │
         └── services/
-            └── __init__.py
+            ├── __init__.py
+            └── user_service.py
 ```
 
-> Note: `.env` and `.venv/` are excluded from Git through `.gitignore`.
+> Note: `auth_test.py` and `test_supabase_auth.py` are temporary authentication testing files and are excluded from Git through `.gitignore`.
 
 ---
 
@@ -347,11 +449,113 @@ http://127.0.0.1:8000/health
 }
 ```
 
-Swagger documentation:
+## Database Health Check
+
+**Method:**
 
 ```text
-http://127.0.0.1:8000/docs
+GET
 ```
+
+**Endpoint:**
+
+```text
+/health/db
+```
+
+**Local URL:**
+
+```text
+http://127.0.0.1:8000/health/db
+```
+
+**Response:**
+
+```json
+{
+    "status": "ok",
+    "database": "connected",
+    "query_result": 1
+}
+```
+
+## Authentication Test Endpoint
+
+**Method:**
+
+```text
+GET
+```
+
+**Endpoint:**
+
+```text
+/auth-test
+```
+
+This endpoint was created for temporary authentication verification and is not tracked in Git.
+
+## Current User Profile
+
+**Method:**
+
+```text
+GET
+```
+
+**Endpoint:**
+
+```text
+/users/me
+```
+
+**Authentication:**
+
+```text
+Authorization: Bearer <Supabase access token>
+```
+
+**Example Response:**
+
+```json
+{
+    "id": "user-uuid",
+    "name": "User Name",
+    "email": "user@example.com",
+    "role": "user",
+    "created_at": "timestamp"
+}
+```
+
+The endpoint returns the application profile from `public.users` after validating the Supabase access token.
+
+---
+
+# Authentication Flow
+
+```text
+React Frontend
+      ↓
+Supabase Auth Login
+      ↓
+Supabase Access Token
+      ↓
+Authorization: Bearer <access_token>
+      ↓
+FastAPI
+      ↓
+JWT / ES256 Verification
+      ↓
+get_current_user()
+      ↓
+public.users
+      ↓
+Authenticated User Profile
+```
+
+The backend does not store user passwords.
+
+Supabase Auth manages authentication credentials, while `public.users` stores application-specific user information such as name and role.
 
 ---
 
@@ -371,7 +575,7 @@ Psycopg
 PostgreSQL / Supabase
 ```
 
-Database credentials are stored in environment variables and are not committed to GitHub.
+Database credentials and authentication configuration are stored in environment variables and are not committed to GitHub.
 
 ---
 
@@ -392,6 +596,8 @@ Database credentials are stored in environment variables and are not committed t
 13. Backend work should modify only the `backend/` folder.
 14. Major milestones should be committed and pushed to GitHub.
 15. Database changes should be documented in the project README when a major database milestone is completed.
+16. Authentication secrets and access tokens must never be committed or shared publicly.
+17. Temporary testing files should be excluded from Git when they are not part of the application code.
 
 ---
 
@@ -433,6 +639,6 @@ GitHub master
 
 # Current Next Task
 
-**Backend — Step 7: Pydantic Schemas / API Contracts**
+**Backend — Step 10.5: Role / Admin Verification**
 
-The next backend milestone is to define request and response schemas for the API before implementing the music and application endpoints.
+The next backend milestone is to create a reusable authorization dependency that verifies whether the authenticated application user has the required role, especially `admin`, before allowing admin-only APIs.

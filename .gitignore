@@ -22,3 +22,8 @@ firebase_password.txt
 .DS_Store
 Thumbs.db
 "@ | Set-Content ".gitignore"
+
+
+# Temporary authentication testing files
+backend/test_supabase_auth.py
+backend/app/api/auth_test.py
