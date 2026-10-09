@@ -4,13 +4,11 @@ An AI-powered music recommendation application that detects facial emotions and 
 
 ## Project Status
 
-**Current Version:** MVP Version 1
-
-**Development Status:** In Progress
-
-**Current Backend Progress:** Step 11 — Songs API implemented; validation and final testing in progress
-
-**Frontend Integration:** Not started yet
+* **Current Version:** MVP Version 1
+* **Development Status:** In Progress
+* **Current Backend Progress:** Step 11 — Songs API completed, verified, committed, and pushed to GitHub
+* **Next Backend Milestone:** Step 12 — Favorites & Playlist APIs
+* **Frontend Integration:** Not started yet
 
 ---
 
@@ -193,7 +191,7 @@ Database architecture completed with seven application tables:
 ```text
 users
  ├──< recommendations >── songs
- ├──< favorites >───────── songs
+ ├──< favorites >──────── songs
  ├──< playlists
  │       └──< playlist_songs >── songs
  └──< listening_history >── songs
@@ -371,10 +369,25 @@ users
 * [x] Invalid request data returns `422 Unprocessable Entity`
 * [x] Nonexistent song update returns `404 Not Found`
 * [x] Nonexistent song deletion returns `404 Not Found`
-* [ ] Review all Songs API and service files
-* [ ] Complete final API verification
-* [ ] Review Git diff and repository status
-* [ ] Complete Step 11 Git checkpoint
+* [x] Reviewed `backend/app/api/songs.py`
+* [x] Reviewed `backend/app/services/song_service.py`
+* [x] Python syntax check completed successfully
+* [x] Backend health endpoint verified
+* [x] Songs API endpoints verified in Swagger
+* [x] Temporary test song created successfully
+* [x] Successful song deletion verified with `204 No Content`
+* [x] Git diff whitespace check completed
+* [x] Git status and changed files reviewed
+* [x] README updated
+* [x] Step 11 changes committed to Git
+* [x] Step 11 commit pushed to GitHub `master`
+
+**Step 11 Git checkpoint**
+
+* Commit: `a76b0ea`
+* Commit message: `Complete Songs API with validation and tests`
+* Branch: `master`
+* Push to GitHub: Successful
 
 ---
 
@@ -483,7 +496,7 @@ Music-App/
             └── song_service.py
 ```
 
-> Note: The project structure shows the main application files. Temporary authentication/testing files may be excluded from Git through `.gitignore`. The local `.env` and `.venv` are not to be committed to GitHub.
+> Note: This structure documents the main application files. Temporary authentication/testing files may be excluded from Git through `.gitignore`. Local `.env` and `.venv` must not be committed to GitHub.
 
 ---
 
@@ -491,13 +504,11 @@ Music-App/
 
 ## Health Check
 
-**Method:** `GET`
+* **Method:** `GET`
+* **Endpoint:** `/health`
+* **Local URL:** `http://127.0.0.1:8000/health`
 
-**Endpoint:** `/health`
-
-**Local URL:** `http://127.0.0.1:8000/health`
-
-**Example Response:**
+Example response:
 
 ```json
 {
@@ -508,13 +519,11 @@ Music-App/
 
 ## Database Health Check
 
-**Method:** `GET`
+* **Method:** `GET`
+* **Endpoint:** `/health/db`
+* **Local URL:** `http://127.0.0.1:8000/health/db`
 
-**Endpoint:** `/health/db`
-
-**Local URL:** `http://127.0.0.1:8000/health/db`
-
-**Example Response:**
+Example response:
 
 ```json
 {
@@ -526,19 +535,16 @@ Music-App/
 
 ## Authentication Test Endpoint
 
-**Method:** `GET`
+* **Method:** `GET`
+* **Endpoint:** `/auth-test`
 
-**Endpoint:** `/auth-test`
-
-This endpoint was created for temporary authentication verification and is not tracked in Git.
+This endpoint was created for authentication verification.
 
 ## Current User Profile
 
-**Method:** `GET`
-
-**Endpoint:** `/users/me`
-
-**Authentication:** Supabase access token required.
+* **Method:** `GET`
+* **Endpoint:** `/users/me`
+* **Authentication:** Supabase access token required
 
 Header:
 
@@ -546,7 +552,7 @@ Header:
 Authorization: Bearer <Supabase access token>
 ```
 
-**Example Response:**
+Example response:
 
 ```json
 {
@@ -562,13 +568,12 @@ The endpoint returns the application profile from `public.users` after validatin
 
 ## Admin Test Endpoint
 
-**Method:** `GET`
+* **Method:** `GET`
+* **Endpoint:** `/admin-test`
 
-**Endpoint:** `/admin-test`
+This endpoint was created to verify role-based admin authorization.
 
-This endpoint was created temporarily to verify role-based admin authorization and is not tracked in Git.
-
-**Normal user response:**
+Normal-user response:
 
 ```json
 {
@@ -576,9 +581,9 @@ This endpoint was created temporarily to verify role-based admin authorization a
 }
 ```
 
-**Expected status:** `403 Forbidden`
+Expected status: `403 Forbidden`
 
-**Example admin response:**
+Example admin response:
 
 ```json
 {
@@ -588,7 +593,7 @@ This endpoint was created temporarily to verify role-based admin authorization a
 }
 ```
 
-**Expected status:** `200 OK`
+Expected status: `200 OK`
 
 ## Songs API
 
@@ -707,7 +712,7 @@ Psycopg
 PostgreSQL / Supabase
 ```
 
-Database credentials and authentication configuration are stored in environment variables and are not committed to GitHub.
+Database credentials and authentication configuration are stored in environment variables and must not be committed to GitHub.
 
 ---
 
@@ -747,6 +752,8 @@ Branch:
 master
 ```
 
+GitHub repository: [Ranjan-kumar-yadav/Music-Application](https://github.com/Ranjan-kumar-yadav/Music-Application)
+
 The GitHub repository is the shared source of truth for the project.
 
 Development workflow:
@@ -771,26 +778,23 @@ GitHub master
 
 # Current Next Task
 
-**Backend — Step 11.5: Songs API Final Review**
+## Backend — Step 12: Favorites & Playlist APIs
 
-The Songs API has been implemented with public read endpoints and admin-only create, update, and delete endpoints.
+**Previous milestone:** Step 11 — Music Data & Songs API — completed, verified, committed, and pushed to GitHub.
 
-Completed checks include:
+The next milestone will implement the APIs for user favorites and playlists.
 
-* Public song listing and single-song retrieval
-* Song creation and update tested successfully
-* Invalid emotion validation
-* Empty and whitespace-only title validation
-* Nonexistent song retrieval returning `404 Not Found`
-* Nonexistent song update and deletion returning `404 Not Found`
-* Invalid request data returning `422 Unprocessable Entity`
+Planned work:
 
-Remaining work:
+* Review existing favorite and playlist SQLAlchemy models.
+* Review existing Pydantic schemas and database constraints.
+* Define the required API contracts.
+* Implement favorite service and router.
+* Implement playlist service and router.
+* Enforce authentication and user-specific data access.
+* Prevent users from modifying another user's favorites or playlists.
+* Register the routers in `main.py`.
+* Test success cases, invalid requests, and missing resources.
+* Update the README and commit the completed milestone.
 
-* Review `backend/app/api/songs.py`
-* Review `backend/app/services/song_service.py`
-* Complete final API verification
-* Review all changed files and Git status
-* Complete the Step 11 Git checkpoint
-
-The next feature milestone is **Step 12 — Favorites & Playlist APIs**.
+**Development rule:** Continue from the existing project. Do not recreate the backend setup or implement future features unless requested.
