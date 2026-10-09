@@ -382,14 +382,6 @@ users
 * [x] Step 11 changes committed to Git
 * [x] Step 11 commit pushed to GitHub `master`
 
-**Step 11 Git checkpoint**
-
-* Commit: `a76b0ea`
-* Commit message: `Complete Songs API with validation and tests`
-* Branch: `master`
-* Push to GitHub: Successful
-
----
 
 ## Upcoming Backend Work
 
