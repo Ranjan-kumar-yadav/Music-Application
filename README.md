@@ -8,7 +8,7 @@ An AI-powered music recommendation application that detects facial emotions and 
 
 **Development Status:** In Progress
 
-**Current Backend Progress:** Step 10.7 completed
+**Current Backend Progress:** Step 11 — Songs API implemented; validation and final testing in progress
 
 **Frontend Integration:** Not started yet
 
@@ -63,6 +63,7 @@ React Recommendation UI
 * PyJWT
 * Cryptography
 * Supabase Python SDK
+* Psycopg PostgreSQL driver
 
 ### Database
 
@@ -322,7 +323,7 @@ users
 * [x] Non-admin access blocked with `403 Forbidden`
 * [x] Admin access successfully verified with `200 OK`
 * [x] Temporary `/admin-test` endpoint created for testing
-* [x] Test admin role restored to `user`
+* [x] Admin and normal-user role authorization tested
 
 #### Step 10.6 — Postman Authentication Testing
 
@@ -344,11 +345,42 @@ users
 * [x] Authentication milestone committed
 * [x] Changes pushed to GitHub `master`
 
+### Step 11 — Music Data & Songs API
+
+* [x] Song Pydantic schemas created
+* [x] Song service created
+* [x] Songs router created
+* [x] Songs router registered in `main.py`
+* [x] Public `GET /songs` endpoint implemented
+* [x] Public `GET /songs/{song_id}` endpoint implemented
+* [x] Admin-only `POST /songs` endpoint implemented
+* [x] Admin-only `PUT /songs/{song_id}` endpoint implemented
+* [x] Admin-only `DELETE /songs/{song_id}` endpoint implemented
+* [x] Song title validation added
+* [x] Supported emotion validation added
+* [x] Song creation tested successfully
+* [x] Song update tested successfully
+* [x] Public song listing tested
+* [x] Single-song retrieval tested
+* [x] Nonexistent song ID returns `404 Not Found`
+* [x] Empty and whitespace-only title validation tested
+* [x] Invalid emotion validation tested
+
+#### Step 11.5 — Validation & Final Verification
+
+* [x] Invalid request data returns `422 Unprocessable Entity`
+* [x] Nonexistent song update returns `404 Not Found`
+* [x] Nonexistent song deletion returns `404 Not Found`
+* [ ] Review all Songs API and service files
+* [ ] Complete final API verification
+* [ ] Review Git diff and repository status
+* [ ] Complete Step 11 Git checkpoint
+
 ---
 
 ## Upcoming Backend Work
 
-* [ ] Step 11 — Music Data & Songs API
+* [x] Step 11 — Music Data & Songs API
 * [ ] Step 12 — Favorites & Playlist APIs
 * [ ] Step 13 — Listening History API
 * [ ] Step 14 — Recommendation Logic
@@ -392,7 +424,6 @@ Current project structure:
 
 ```text
 Music-App/
-
 │
 ├── README.md
 ├── .gitignore
@@ -417,7 +448,8 @@ Music-App/
         │   ├── health.py
         │   ├── users.py
         │   ├── auth_test.py
-        │   └── admin_test.py
+        │   ├── admin_test.py
+        │   └── songs.py
         │
         ├── core/
         │   ├── __init__.py
@@ -447,10 +479,11 @@ Music-App/
         │
         └── services/
             ├── __init__.py
-            └── user_service.py
+            ├── user_service.py
+            └── song_service.py
 ```
 
-> Note: `auth_test.py`, `admin_test.py`, and `test_supabase_auth.py` are temporary authentication/testing files and are excluded from Git through `.gitignore`.
+> Note: The project structure shows the main application files. Temporary authentication/testing files may be excluded from Git through `.gitignore`. The local `.env` and `.venv` are not to be committed to GitHub.
 
 ---
 
@@ -458,94 +491,56 @@ Music-App/
 
 ## Health Check
 
-**Method:**
+**Method:** `GET`
 
-```text
-GET
-```
+**Endpoint:** `/health`
 
-**Endpoint:**
+**Local URL:** `http://127.0.0.1:8000/health`
 
-```text
-/health
-```
-
-**Local URL:**
-
-```text
-http://127.0.0.1:8000/health
-```
-
-**Response:**
+**Example Response:**
 
 ```json
 {
-    "status": "ok",
-    "message": "Music App Backend is running"
+  "status": "ok",
+  "message": "Music App Backend is running"
 }
 ```
 
 ## Database Health Check
 
-**Method:**
+**Method:** `GET`
 
-```text
-GET
-```
+**Endpoint:** `/health/db`
 
-**Endpoint:**
+**Local URL:** `http://127.0.0.1:8000/health/db`
 
-```text
-/health/db
-```
-
-**Local URL:**
-
-```text
-http://127.0.0.1:8000/health/db
-```
-
-**Response:**
+**Example Response:**
 
 ```json
 {
-    "status": "ok",
-    "database": "connected",
-    "query_result": 1
+  "status": "ok",
+  "database": "connected",
+  "query_result": 1
 }
 ```
 
 ## Authentication Test Endpoint
 
-**Method:**
+**Method:** `GET`
 
-```text
-GET
-```
-
-**Endpoint:**
-
-```text
-/auth-test
-```
+**Endpoint:** `/auth-test`
 
 This endpoint was created for temporary authentication verification and is not tracked in Git.
 
 ## Current User Profile
 
-**Method:**
+**Method:** `GET`
 
-```text
-GET
-```
+**Endpoint:** `/users/me`
 
-**Endpoint:**
+**Authentication:** Supabase access token required.
 
-```text
-/users/me
-```
-
-**Authentication:**
+Header:
 
 ```text
 Authorization: Bearer <Supabase access token>
@@ -555,11 +550,11 @@ Authorization: Bearer <Supabase access token>
 
 ```json
 {
-    "id": "user-uuid",
-    "name": "User Name",
-    "email": "user@example.com",
-    "role": "user",
-    "created_at": "timestamp"
+  "id": "user-uuid",
+  "name": "User Name",
+  "email": "user@example.com",
+  "role": "user",
+  "created_at": "timestamp"
 }
 ```
 
@@ -567,17 +562,9 @@ The endpoint returns the application profile from `public.users` after validatin
 
 ## Admin Test Endpoint
 
-**Method:**
+**Method:** `GET`
 
-```text
-GET
-```
-
-**Endpoint:**
-
-```text
-/admin-test
-```
+**Endpoint:** `/admin-test`
 
 This endpoint was created temporarily to verify role-based admin authorization and is not tracked in Git.
 
@@ -585,31 +572,90 @@ This endpoint was created temporarily to verify role-based admin authorization a
 
 ```json
 {
-    "detail": "Admin access required"
+  "detail": "Admin access required"
 }
 ```
 
-**Expected status:**
+**Expected status:** `403 Forbidden`
 
-```text
-403 Forbidden
-```
-
-**Admin user response:**
+**Example admin response:**
 
 ```json
 {
-    "admin_access": true,
-    "user_id": "user-uuid",
-    "role": "admin"
+  "admin_access": true,
+  "user_id": "user-uuid",
+  "role": "admin"
 }
 ```
 
-**Expected status:**
+**Expected status:** `200 OK`
 
-```text
-200 OK
-```
+## Songs API
+
+The Songs API provides endpoints to retrieve, create, update, and delete songs from the `songs` table.
+
+### 1. Get All Songs
+
+* **Method:** `GET`
+* **Endpoint:** `/songs`
+* **Authentication:** Not required
+* **Success status:** `200 OK`
+
+Returns the list of songs, ordered by creation date.
+
+### 2. Get Song by ID
+
+* **Method:** `GET`
+* **Endpoint:** `/songs/{song_id}`
+* **Authentication:** Not required
+* **Success status:** `200 OK`
+
+Returns a song by its UUID. If the song does not exist, the API returns `404 Not Found`.
+
+### 3. Create Song
+
+* **Method:** `POST`
+* **Endpoint:** `/songs`
+* **Authentication:** Admin access required
+* **Success status:** `201 Created`
+
+Creates a new song.
+
+The emotion must be one of:
+
+* `angry`
+* `happy`
+* `neutral`
+* `sad`
+* `surprise`
+
+The title cannot be empty or contain only spaces.
+
+### 4. Update Song
+
+* **Method:** `PUT`
+* **Endpoint:** `/songs/{song_id}`
+* **Authentication:** Admin access required
+* **Success status:** `200 OK`
+
+Updates the supplied song fields. A nonexistent song returns `404 Not Found`, and an empty or whitespace-only title is rejected.
+
+### 5. Delete Song
+
+* **Method:** `DELETE`
+* **Endpoint:** `/songs/{song_id}`
+* **Authentication:** Admin access required
+* **Success status:** `204 No Content`
+
+Deletes a song by its UUID. A nonexistent song returns `404 Not Found`.
+
+### Songs API Validation
+
+* Song titles cannot be empty or contain only spaces.
+* Emotion values are restricted to the five supported emotion classes.
+* A nonexistent song ID returns `404 Not Found`.
+* Invalid request data returns `422 Unprocessable Entity`.
+* Admin-only endpoints require a valid Supabase access token and an application user with the `admin` role.
 
 ---
 
@@ -725,6 +771,26 @@ GitHub master
 
 # Current Next Task
 
-**Backend — Step 11: Music Data & Songs API**
+**Backend — Step 11.5: Songs API Final Review**
 
-The next backend milestone is to create the Songs API for retrieving music data from the `songs` table. The API will be designed for the React frontend and will use the existing authentication/database architecture where required.
+The Songs API has been implemented with public read endpoints and admin-only create, update, and delete endpoints.
+
+Completed checks include:
+
+* Public song listing and single-song retrieval
+* Song creation and update tested successfully
+* Invalid emotion validation
+* Empty and whitespace-only title validation
+* Nonexistent song retrieval returning `404 Not Found`
+* Nonexistent song update and deletion returning `404 Not Found`
+* Invalid request data returning `422 Unprocessable Entity`
+
+Remaining work:
+
+* Review `backend/app/api/songs.py`
+* Review `backend/app/services/song_service.py`
+* Complete final API verification
+* Review all changed files and Git status
+* Complete the Step 11 Git checkpoint
+
+The next feature milestone is **Step 12 — Favorites & Playlist APIs**.
