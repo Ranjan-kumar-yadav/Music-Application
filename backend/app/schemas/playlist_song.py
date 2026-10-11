@@ -1,12 +1,13 @@
+
 from datetime import datetime
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class PlaylistSongCreate(BaseModel):
     song_id: UUID
-    position: int
+    position: int = Field(gt=0)
 
 
 class PlaylistSongResponse(BaseModel):
