@@ -4,11 +4,11 @@ An AI-powered music recommendation application that detects facial emotions and 
 
 ## Project Status
 
-* **Current Version:** MVP Version 1
-* **Development Status:** In Progress
-* **Current Backend Progress:** Step 11 — Songs API completed, verified, committed, and pushed to GitHub
-* **Next Backend Milestone:** Step 12 — Favorites & Playlist APIs
-* **Frontend Integration:** Not started yet
+- **Current Version:** MVP Version 1
+- **Development Status:** In Progress
+- **Current Backend Progress:** Step 12 — Favorites & Playlist APIs completed, tested, committed, and pushed to GitHub
+- **Next Backend Milestone:** Step 13 — Listening History API
+- **Frontend Integration:** Not started yet
 
 ---
 
@@ -45,51 +45,45 @@ React Recommendation UI
 ## Technology Stack
 
 ### Frontend
-
-* React
-* Vite
-* Tailwind CSS
+- React
+- Vite
+- Tailwind CSS
 
 ### Backend
-
-* Python
-* FastAPI
-* Uvicorn
-* SQLAlchemy
-* Pydantic
-* Pydantic Settings
-* PyJWT
-* Cryptography
-* Supabase Python SDK
-* Psycopg PostgreSQL driver
+- Python
+- FastAPI
+- Uvicorn
+- SQLAlchemy
+- Pydantic
+- Pydantic Settings
+- PyJWT
+- Cryptography
+- Supabase Python SDK
+- Psycopg PostgreSQL driver
 
 ### Database
-
-* PostgreSQL
-* Supabase (managed PostgreSQL)
+- PostgreSQL
+- Supabase (managed PostgreSQL)
 
 ### Authentication
-
-* Supabase Auth
-* JWT access tokens
-* ES256 / ECC (P-256) JWT verification
-* JWKS-based public key verification
-* HTTP Bearer authentication
-* Role-based authorization
+- Supabase Auth
+- JWT access tokens
+- ES256 / ECC (P-256) JWT verification
+- JWKS-based public key verification
+- HTTP Bearer authentication
+- Role-based authorization
 
 ### AI / Machine Learning
-
-* TensorFlow
-* Keras
-* MobileNetV2
-* OpenCV
+- TensorFlow
+- Keras
+- MobileNetV2
+- OpenCV
 
 ### Development & Testing
-
-* Postman
-* Git
-* GitHub
-* VS Code
+- Postman
+- Git
+- GitHub
+- VS Code
 
 ---
 
@@ -97,11 +91,11 @@ React Recommendation UI
 
 The MVP currently uses five emotion classes:
 
-* Angry
-* Happy
-* Neutral
-* Sad
-* Surprise
+- Angry
+- Happy
+- Neutral
+- Sad
+- Surprise
 
 ---
 
@@ -111,80 +105,80 @@ The MVP currently uses five emotion classes:
 
 ### Step 0 — Environment Setup
 
-* [x] Python environment
-* [x] Python virtual environment
-* [x] Backend `.venv`
-* [x] Python 3.12.10 verified
-* [x] pip verified
+- [x] Python environment
+- [x] Python virtual environment
+- [x] Backend `.venv`
+- [x] Python 3.12.10 verified
+- [x] pip verified
 
 ### Step 1 — FastAPI Setup
 
-* [x] FastAPI installed
-* [x] Uvicorn installed
-* [x] `requirements.txt` created
-* [x] FastAPI application created
-* [x] `/health` endpoint created
-* [x] Postman testing completed
-* [x] Swagger `/docs` verified
+- [x] FastAPI installed
+- [x] Uvicorn installed
+- [x] `requirements.txt` created
+- [x] FastAPI application created
+- [x] `/health` endpoint created
+- [x] Postman testing completed
+- [x] Swagger `/docs` verified
 
 ### Step 2 — Git & GitHub Setup
 
-* [x] Git initialized inside `Music-App`
-* [x] `master` branch created
-* [x] `.gitignore` created
-* [x] GitHub repository created
-* [x] Remote `origin` configured
-* [x] Initial backend setup pushed to GitHub
+- [x] Git initialized inside `Music-App`
+- [x] `master` branch created
+- [x] `.gitignore` created
+- [x] GitHub repository created
+- [x] Remote `origin` configured
+- [x] Initial backend setup pushed to GitHub
 
 ### Step 3 — Backend Modular Structure
 
-* [x] `api` package created
-* [x] `models` package created
-* [x] `schemas` package created
-* [x] `services` package created
-* [x] `core` package created
-* [x] Health router created
-* [x] Health router connected to `main.py`
-* [x] `/health` tested through Postman
-* [x] `/health` verified through Swagger
-* [x] Changes committed and pushed to GitHub
+- [x] `api` package created
+- [x] `models` package created
+- [x] `schemas` package created
+- [x] `services` package created
+- [x] `core` package created
+- [x] Health router created
+- [x] Health router connected to `main.py`
+- [x] `/health` tested through Postman
+- [x] `/health` verified through Swagger
+- [x] Changes committed and pushed to GitHub
 
 ### Step 4 — Configuration & Environment Variables
 
-* [x] `.env` configuration created
-* [x] `.env.example` created
-* [x] Environment variables loaded using Pydantic Settings
-* [x] Application name configured
-* [x] Application version configured
-* [x] Environment mode configured
-* [x] Database URL configured
-* [x] Supabase URL configured
-* [x] Supabase publishable/anon key configured
-* [x] Supabase JWT issuer configured
-* [x] Supabase JWKS URL configured
-* [x] `.env` excluded from Git
+- [x] `.env` configuration created
+- [x] `.env.example` created
+- [x] Environment variables loaded using Pydantic Settings
+- [x] Application name configured
+- [x] Application version configured
+- [x] Environment mode configured
+- [x] Database URL configured
+- [x] Supabase URL configured
+- [x] Supabase publishable/anon key configured
+- [x] Supabase JWT issuer configured
+- [x] Supabase JWKS URL configured
+- [x] `.env` excluded from Git
 
 ### Step 5 — PostgreSQL / Supabase Connection
 
-* [x] Supabase PostgreSQL project created
-* [x] PostgreSQL connection configured
-* [x] SQLAlchemy installed
-* [x] Psycopg PostgreSQL driver installed
-* [x] Database engine created
-* [x] Database connection tested
-* [x] `SELECT 1` database test successful
+- [x] Supabase PostgreSQL project created
+- [x] PostgreSQL connection configured
+- [x] SQLAlchemy installed
+- [x] Psycopg PostgreSQL driver installed
+- [x] Database engine created
+- [x] Database connection tested
+- [x] `SELECT 1` database test successful
 
 ### Step 6 — Database Models & Tables
 
 Database architecture completed with seven application tables:
 
-* [x] `users`
-* [x] `songs`
-* [x] `recommendations`
-* [x] `favorites`
-* [x] `playlists`
-* [x] `playlist_songs`
-* [x] `listening_history`
+- [x] `users`
+- [x] `songs`
+- [x] `recommendations`
+- [x] `favorites`
+- [x] `playlists`
+- [x] `playlist_songs`
+- [x] `listening_history`
 
 #### Database Relationships
 
@@ -199,204 +193,245 @@ users
 
 #### Database Constraints
 
-* [x] Primary keys
-* [x] Foreign keys
-* [x] `ON DELETE CASCADE` relationships
-* [x] NOT NULL constraints
-* [x] UNIQUE constraints
-* [x] CHECK constraints
-* [x] Emotion validation
-* [x] Recommendation confidence validation
-* [x] User role validation
-* [x] Listening duration validation
-* [x] Playlist position validation
+- [x] Primary keys
+- [x] Foreign keys
+- [x] `ON DELETE CASCADE` relationships
+- [x] NOT NULL constraints
+- [x] UNIQUE constraints
+- [x] CHECK constraints
+- [x] Emotion validation
+- [x] Recommendation confidence validation
+- [x] User role validation
+- [x] Listening duration validation
+- [x] Playlist position validation
 
 #### Database Indexes
 
-* [x] Song emotion index
-* [x] Recommendation indexes
-* [x] Favorite user index
-* [x] Playlist user index
-* [x] Playlist-song indexes
-* [x] Listening-history indexes
+- [x] Song emotion index
+- [x] Recommendation indexes
+- [x] Favorite user index
+- [x] Playlist user index
+- [x] Playlist-song indexes
+- [x] Listening-history indexes
 
 #### Row Level Security
 
-* [x] RLS enabled on all seven application tables
-* [x] Database security structure verified
-* [x] Detailed user-specific RLS policies deferred until application authorization is fully implemented
+- [x] RLS enabled on all seven application tables
+- [x] Database security structure verified
+- [x] Detailed user-specific RLS policies deferred until application authorization is fully implemented
 
 #### Seed / Test Data
 
-* [x] Five demo songs created
-* [x] Supabase Auth test user created
-* [x] Matching application user created
-* [x] Favorite test data created
-* [x] Playlist test data created
-* [x] Playlist songs created
-* [x] Recommendation test data created
-* [x] Listening history test data created
+- [x] Five demo songs created
+- [x] Supabase Auth test user created
+- [x] Matching application user created
+- [x] Favorite test data created
+- [x] Playlist test data created
+- [x] Playlist songs created
+- [x] Recommendation test data created
+- [x] Listening history test data created
 
 #### Database Testing
 
-* [x] Invalid song emotion rejected
-* [x] Invalid recommendation confidence rejected
-* [x] Duplicate favorite rejected
-* [x] Invalid user foreign key rejected
-* [x] Duplicate playlist song rejected
-* [x] Missing song title rejected
-* [x] Invalid user role rejected
+- [x] Invalid song emotion rejected
+- [x] Invalid recommendation confidence rejected
+- [x] Duplicate favorite rejected
+- [x] Invalid user foreign key rejected
+- [x] Duplicate playlist song rejected
+- [x] Missing song title rejected
+- [x] Invalid user role rejected
 
 ### Step 7 — Pydantic Schemas / API Contracts
 
-* [x] User response schema
-* [x] Song response schema
-* [x] Favorite request/response schemas
-* [x] Playlist request/response schemas
-* [x] Playlist-song request/response schemas
-* [x] Recommendation request/response schemas
-* [x] Listening-history request/response schemas
-* [x] Pydantic schema validation verified
+- [x] User response schema
+- [x] Song response schema
+- [x] Favorite request/response schemas
+- [x] Playlist request/response schemas
+- [x] Playlist-song request/response schemas
+- [x] Recommendation request/response schemas
+- [x] Listening-history request/response schemas
+- [x] Pydantic schema validation verified
 
 ### Step 8 — SQLAlchemy Models
 
-* [x] SQLAlchemy `Base` configured
-* [x] Seven database models created
-* [x] Model relationships configured
-* [x] Database tables verified through SQLAlchemy
-* [x] All seven models imported successfully
+- [x] SQLAlchemy `Base` configured
+- [x] Seven database models created
+- [x] Model relationships configured
+- [x] Database tables verified through SQLAlchemy
+- [x] All seven models imported successfully
 
 ### Step 9 — Database Session & Dependency Injection
 
-* [x] SQLAlchemy `SessionLocal` configured
-* [x] Database session dependency created
-* [x] Automatic session closing implemented
-* [x] Database dependency tested
-* [x] `/health/db` endpoint created
-* [x] Database health check verified
+- [x] SQLAlchemy `SessionLocal` configured
+- [x] Database session dependency created
+- [x] Automatic session closing implemented
+- [x] Database dependency tested
+- [x] `/health/db` endpoint created
+- [x] Database health check verified
 
 ### Step 10 — Authentication, Authorization & User API
 
 #### Step 10.1 — Authentication Dependencies
 
-* [x] PyJWT installed
-* [x] Cryptography installed
-* [x] Supabase Python package installed
-* [x] Authentication dependencies added to `requirements.txt`
+- [x] PyJWT installed
+- [x] Cryptography installed
+- [x] Supabase Python package installed
+- [x] Authentication dependencies added to `requirements.txt`
 
 #### Step 10.2 — Supabase JWT Verification
 
-* [x] Supabase JWT configuration added
-* [x] Current ECC / P-256 signing key identified
-* [x] JWKS-based verification configured
-* [x] JWT issuer validation configured
-* [x] `authenticated` audience validation configured
-* [x] ES256 JWT verification implemented
-* [x] JWKS endpoint tested successfully
-* [x] Supabase login tested successfully
+- [x] Supabase JWT configuration added
+- [x] Current ECC / P-256 signing key identified
+- [x] JWKS-based verification configured
+- [x] JWT issuer validation configured
+- [x] `authenticated` audience validation configured
+- [x] ES256 JWT verification implemented
+- [x] JWKS endpoint tested successfully
+- [x] Supabase login tested successfully
 
 #### Step 10.3 — Current Authenticated User Dependency
 
-* [x] HTTP Bearer authentication configured
-* [x] `get_current_user()` dependency created
-* [x] JWT access token verified through dependency
-* [x] User ID extracted from JWT `sub` claim
-* [x] Authenticated endpoint tested successfully
+- [x] HTTP Bearer authentication configured
+- [x] `get_current_user()` dependency created
+- [x] JWT access token verified through dependency
+- [x] User ID extracted from JWT `sub` claim
+- [x] Authenticated endpoint tested successfully
 
 #### Step 10.4 — User API
 
-* [x] User service created
-* [x] Current user lookup implemented
-* [x] `GET /users/me` endpoint created
-* [x] Authentication dependency integrated
-* [x] Database dependency integrated
-* [x] Application user profile linked with Supabase Auth user
-* [x] `GET /users/me` tested through Postman
+- [x] User service created
+- [x] Current user lookup implemented
+- [x] `GET /users/me` endpoint created
+- [x] Authentication dependency integrated
+- [x] Database dependency integrated
+- [x] Application user profile linked with Supabase Auth user
+- [x] `GET /users/me` tested through Postman
 
 #### Step 10.5 — Role / Admin Verification
 
-* [x] `get_current_admin()` authorization dependency created
-* [x] Authenticated user linked to application user record
-* [x] Application role checked from `public.users`
-* [x] Non-admin access blocked with `403 Forbidden`
-* [x] Admin access successfully verified with `200 OK`
-* [x] Temporary `/admin-test` endpoint created for testing
-* [x] Admin and normal-user role authorization tested
+- [x] `get_current_admin()` authorization dependency created
+- [x] Authenticated user linked to application user record
+- [x] Application role checked from `public.users`
+- [x] Non-admin access blocked with `403 Forbidden`
+- [x] Admin access successfully verified with `200 OK`
+- [x] Temporary `/admin-test` endpoint created for testing
+- [x] Admin and normal-user role authorization tested
 
 #### Step 10.6 — Postman Authentication Testing
 
-* [x] `/auth-test` tested with valid access token
-* [x] `/users/me` tested with valid access token
-* [x] `/admin-test` tested with normal user
-* [x] `/admin-test` tested with admin user
-* [x] Invalid access token tested
-* [x] `401 Unauthorized` response verified
-* [x] `403 Forbidden` response verified
-* [x] Authentication and authorization flow verified through Postman
+- [x] `/auth-test` tested with valid access token
+- [x] `/users/me` tested with valid access token
+- [x] `/admin-test` tested with normal user
+- [x] `/admin-test` tested with admin user
+- [x] Invalid access token tested
+- [x] `401 Unauthorized` response verified
+- [x] `403 Forbidden` response verified
+- [x] Authentication and authorization flow verified through Postman
 
 #### Step 10.7 — Authentication Git Checkpoint
 
-* [x] Authentication changes reviewed
-* [x] Temporary authentication testing files excluded from Git
-* [x] Temporary admin testing file excluded from Git
-* [x] README updated
-* [x] Authentication milestone committed
-* [x] Changes pushed to GitHub `master`
+- [x] Authentication changes reviewed
+- [x] Temporary authentication testing files excluded from Git
+- [x] Temporary admin testing file excluded from Git
+- [x] README updated
+- [x] Authentication milestone committed
+- [x] Changes pushed to GitHub `master`
 
 ### Step 11 — Music Data & Songs API
 
-* [x] Song Pydantic schemas created
-* [x] Song service created
-* [x] Songs router created
-* [x] Songs router registered in `main.py`
-* [x] Public `GET /songs` endpoint implemented
-* [x] Public `GET /songs/{song_id}` endpoint implemented
-* [x] Admin-only `POST /songs` endpoint implemented
-* [x] Admin-only `PUT /songs/{song_id}` endpoint implemented
-* [x] Admin-only `DELETE /songs/{song_id}` endpoint implemented
-* [x] Song title validation added
-* [x] Supported emotion validation added
-* [x] Song creation tested successfully
-* [x] Song update tested successfully
-* [x] Public song listing tested
-* [x] Single-song retrieval tested
-* [x] Nonexistent song ID returns `404 Not Found`
-* [x] Empty and whitespace-only title validation tested
-* [x] Invalid emotion validation tested
+- [x] Song Pydantic schemas created
+- [x] Song service created
+- [x] Songs router created
+- [x] Songs router registered in `main.py`
+- [x] Public `GET /songs` endpoint implemented
+- [x] Public `GET /songs/{song_id}` endpoint implemented
+- [x] Admin-only `POST /songs` endpoint implemented
+- [x] Admin-only `PUT /songs/{song_id}` endpoint implemented
+- [x] Admin-only `DELETE /songs/{song_id}` endpoint implemented
+- [x] Song title validation added
+- [x] Supported emotion validation added
+- [x] Song creation tested successfully
+- [x] Song update tested successfully
+- [x] Public song listing tested
+- [x] Single-song retrieval tested
+- [x] Nonexistent song ID returns `404 Not Found`
+- [x] Empty and whitespace-only title validation tested
+- [x] Invalid emotion validation tested
 
 #### Step 11.5 — Validation & Final Verification
 
-* [x] Invalid request data returns `422 Unprocessable Entity`
-* [x] Nonexistent song update returns `404 Not Found`
-* [x] Nonexistent song deletion returns `404 Not Found`
-* [x] Reviewed `backend/app/api/songs.py`
-* [x] Reviewed `backend/app/services/song_service.py`
-* [x] Python syntax check completed successfully
-* [x] Backend health endpoint verified
-* [x] Songs API endpoints verified in Swagger
-* [x] Temporary test song created successfully
-* [x] Successful song deletion verified with `204 No Content`
-* [x] Git diff whitespace check completed
-* [x] Git status and changed files reviewed
-* [x] README updated
-* [x] Step 11 changes committed to Git
-* [x] Step 11 commit pushed to GitHub `master`
+- [x] Invalid request data returns `422 Unprocessable Entity`
+- [x] Nonexistent song update returns `404 Not Found`
+- [x] Nonexistent song deletion returns `404 Not Found`
+- [x] Reviewed `backend/app/api/songs.py`
+- [x] Reviewed `backend/app/services/song_service.py`
+- [x] Python syntax check completed successfully
+- [x] Backend health endpoint verified
+- [x] Songs API endpoints verified in Swagger
+- [x] Temporary test song created successfully
+- [x] Successful song deletion verified with `204 No Content`
+- [x] Git diff whitespace check completed
+- [x] Git status and changed files reviewed
+- [x] README updated
+- [x] Step 11 changes committed to Git
+- [x] Step 11 commit pushed to GitHub `master`
 
+### Step 12 — Favorites & Playlist APIs
+
+#### Step 12.1 — Favorites API
+
+- [x] Favorite service created
+- [x] Favorites router created and registered in `main.py`
+- [x] `GET /favorites` — retrieve the current user's favorites
+- [x] `POST /favorites` — add a song to favorites
+- [x] `DELETE /favorites/{favorite_id}` — remove a favorite
+- [x] Duplicate favorite validation returns `409 Conflict`
+- [x] Missing or unauthorized favorite returns `404 Not Found`
+- [x] Favorites API tested successfully
+
+#### Step 12.2 — Playlist CRUD API
+
+- [x] Playlist service and router created
+- [x] Playlist Pydantic schemas created
+- [x] `GET /playlists` — retrieve the current user's playlists
+- [x] `POST /playlists` — create a playlist
+- [x] `PUT /playlists/{playlist_id}` — update a playlist
+- [x] `DELETE /playlists/{playlist_id}` — delete a playlist
+- [x] Playlist name validation implemented
+- [x] Playlist ownership and authorization verified
+- [x] Success and error responses tested
+
+#### Step 12.3 — Playlist Songs API
+
+- [x] Playlist-song service and router created
+- [x] `GET /playlists/{playlist_id}/songs` — list songs in a playlist
+- [x] `POST /playlists/{playlist_id}/songs` — add a song to a playlist
+- [x] `DELETE /playlists/{playlist_id}/songs/{song_id}` — remove a song from a playlist
+- [x] Duplicate playlist-song validation returns `409 Conflict`
+- [x] Missing resources return `404 Not Found`
+- [x] Playlist ownership and song existence verified
+- [x] Playlist Songs API tested successfully
+
+#### Step 12.4 — Git Checkpoint
+
+- [x] Favorites, Playlist, and Playlist Songs APIs committed
+- [x] Changes pushed to GitHub `master`
+- [x] Git working tree verified clean
 
 ## Upcoming Backend Work
 
-* [x] Step 11 — Music Data & Songs API
-* [ ] Step 12 — Favorites & Playlist APIs
-* [ ] Step 13 — Listening History API
-* [ ] Step 14 — Recommendation Logic
-* [ ] Step 15 — MobileNetV2 Model Integration
-* [ ] Step 16 — Emotion Prediction API
-* [ ] Step 17 — Recommendation API
-* [ ] Step 18 — Complete Backend Flow
-* [ ] Step 19 — Validation & Error Handling
-* [ ] Step 20 — Complete Postman Testing
-* [ ] Step 21 — Backend Cleanup & Final Testing
-* [ ] Step 22 — Backend MVP Checkpoint
+- [x] Step 11 — Music Data & Songs API
+- [x] Step 12 — Favorites & Playlist APIs
+- [ ] Step 13 — Listening History API
+- [ ] Step 14 — Recommendation Logic
+- [ ] Step 15 — MobileNetV2 Model Integration
+- [ ] Step 16 — Emotion Prediction API
+- [ ] Step 17 — Recommendation API
+- [ ] Step 18 — Complete Backend Flow
+- [ ] Step 19 — Validation & Error Handling
+- [ ] Step 20 — Complete Postman Testing
+- [ ] Step 21 — Backend Cleanup & Final Testing
+- [ ] Step 22 — Backend MVP Checkpoint
 
 ---
 
@@ -412,14 +447,14 @@ frontend/
 
 Frontend development should be updated here as milestones are completed.
 
-* [ ] React + Vite setup
-* [ ] Tailwind CSS setup
-* [ ] UI development
-* [ ] Webcam interface
-* [ ] Emotion result UI
-* [ ] Music recommendation UI
-* [ ] FastAPI integration
-* [ ] Final frontend testing
+- [ ] React + Vite setup
+- [ ] Tailwind CSS setup
+- [ ] UI development
+- [ ] Webcam interface
+- [ ] Emotion result UI
+- [ ] Music recommendation UI
+- [ ] FastAPI integration
+- [ ] Final frontend testing
 
 ---
 
@@ -429,24 +464,18 @@ Current project structure:
 
 ```text
 Music-App/
-│
 ├── README.md
 ├── .gitignore
-│
 ├── frontend/
-│
 └── backend/
-    │
     ├── .env
     ├── .env.example
     ├── .venv/
     ├── requirements.txt
     ├── test_supabase_auth.py
-    │
     └── app/
         ├── __init__.py
         ├── main.py
-        │
         ├── api/
         │   ├── __init__.py
         │   ├── dependencies.py
@@ -454,14 +483,15 @@ Music-App/
         │   ├── users.py
         │   ├── auth_test.py
         │   ├── admin_test.py
-        │   └── songs.py
-        │
+        │   ├── songs.py
+        │   ├── favorites.py
+        │   ├── playlists.py
+        │   └── playlist_songs.py
         ├── core/
         │   ├── __init__.py
         │   ├── config.py
         │   ├── database.py
         │   └── security.py
-        │
         ├── models/
         │   ├── __init__.py
         │   ├── user.py
@@ -471,7 +501,6 @@ Music-App/
         │   ├── playlist_song.py
         │   ├── recommendation.py
         │   └── listening_history.py
-        │
         ├── schemas/
         │   ├── __init__.py
         │   ├── user.py
@@ -481,11 +510,13 @@ Music-App/
         │   ├── playlist_song.py
         │   ├── recommendation.py
         │   └── listening_history.py
-        │
         └── services/
             ├── __init__.py
             ├── user_service.py
-            └── song_service.py
+            ├── song_service.py
+            ├── favorite_service.py
+            ├── playlist_service.py
+            └── playlist_song_service.py
 ```
 
 > Note: This structure documents the main application files. Temporary authentication/testing files may be excluded from Git through `.gitignore`. Local `.env` and `.venv` must not be committed to GitHub.
@@ -496,9 +527,9 @@ Music-App/
 
 ## Health Check
 
-* **Method:** `GET`
-* **Endpoint:** `/health`
-* **Local URL:** `http://127.0.0.1:8000/health`
+- **Method:** `GET`
+- **Endpoint:** `/health`
+- **Local URL:** `http://127.0.0.1:8000/health`
 
 Example response:
 
@@ -511,9 +542,9 @@ Example response:
 
 ## Database Health Check
 
-* **Method:** `GET`
-* **Endpoint:** `/health/db`
-* **Local URL:** `http://127.0.0.1:8000/health/db`
+- **Method:** `GET`
+- **Endpoint:** `/health/db`
+- **Local URL:** `http://127.0.0.1:8000/health/db`
 
 Example response:
 
@@ -527,16 +558,16 @@ Example response:
 
 ## Authentication Test Endpoint
 
-* **Method:** `GET`
-* **Endpoint:** `/auth-test`
+- **Method:** `GET`
+- **Endpoint:** `/auth-test`
 
 This endpoint was created for authentication verification.
 
 ## Current User Profile
 
-* **Method:** `GET`
-* **Endpoint:** `/users/me`
-* **Authentication:** Supabase access token required
+- **Method:** `GET`
+- **Endpoint:** `/users/me`
+- **Authentication:** Supabase access token required
 
 Header:
 
@@ -560,8 +591,8 @@ The endpoint returns the application profile from `public.users` after validatin
 
 ## Admin Test Endpoint
 
-* **Method:** `GET`
-* **Endpoint:** `/admin-test`
+- **Method:** `GET`
+- **Endpoint:** `/admin-test`
 
 This endpoint was created to verify role-based admin authorization.
 
@@ -593,66 +624,66 @@ The Songs API provides endpoints to retrieve, create, update, and delete songs f
 
 ### 1. Get All Songs
 
-* **Method:** `GET`
-* **Endpoint:** `/songs`
-* **Authentication:** Not required
-* **Success status:** `200 OK`
+- **Method:** `GET`
+- **Endpoint:** `/songs`
+- **Authentication:** Not required
+- **Success status:** `200 OK`
 
 Returns the list of songs, ordered by creation date.
 
 ### 2. Get Song by ID
 
-* **Method:** `GET`
-* **Endpoint:** `/songs/{song_id}`
-* **Authentication:** Not required
-* **Success status:** `200 OK`
+- **Method:** `GET`
+- **Endpoint:** `/songs/{song_id}`
+- **Authentication:** Not required
+- **Success status:** `200 OK`
 
 Returns a song by its UUID. If the song does not exist, the API returns `404 Not Found`.
 
 ### 3. Create Song
 
-* **Method:** `POST`
-* **Endpoint:** `/songs`
-* **Authentication:** Admin access required
-* **Success status:** `201 Created`
+- **Method:** `POST`
+- **Endpoint:** `/songs`
+- **Authentication:** Admin access required
+- **Success status:** `201 Created`
 
 Creates a new song.
 
 The emotion must be one of:
 
-* `angry`
-* `happy`
-* `neutral`
-* `sad`
-* `surprise`
+- `angry`
+- `happy`
+- `neutral`
+- `sad`
+- `surprise`
 
 The title cannot be empty or contain only spaces.
 
 ### 4. Update Song
 
-* **Method:** `PUT`
-* **Endpoint:** `/songs/{song_id}`
-* **Authentication:** Admin access required
-* **Success status:** `200 OK`
+- **Method:** `PUT`
+- **Endpoint:** `/songs/{song_id}`
+- **Authentication:** Admin access required
+- **Success status:** `200 OK`
 
 Updates the supplied song fields. A nonexistent song returns `404 Not Found`, and an empty or whitespace-only title is rejected.
 
 ### 5. Delete Song
 
-* **Method:** `DELETE`
-* **Endpoint:** `/songs/{song_id}`
-* **Authentication:** Admin access required
-* **Success status:** `204 No Content`
+- **Method:** `DELETE`
+- **Endpoint:** `/songs/{song_id}`
+- **Authentication:** Admin access required
+- **Success status:** `204 No Content`
 
 Deletes a song by its UUID. A nonexistent song returns `404 Not Found`.
 
 ### Songs API Validation
 
-* Song titles cannot be empty or contain only spaces.
-* Emotion values are restricted to the five supported emotion classes.
-* A nonexistent song ID returns `404 Not Found`.
-* Invalid request data returns `422 Unprocessable Entity`.
-* Admin-only endpoints require a valid Supabase access token and an application user with the `admin` role.
+- Song titles cannot be empty or contain only spaces.
+- Emotion values are restricted to the five supported emotion classes.
+- A nonexistent song ID returns `404 Not Found`.
+- Invalid request data returns `422 Unprocessable Entity`.
+- Admin-only endpoints require a valid Supabase access token and an application user with the `admin` role.
 
 ---
 
@@ -770,23 +801,23 @@ GitHub master
 
 # Current Next Task
 
-## Backend — Step 12: Favorites & Playlist APIs
+## Backend — Step 13: Listening History API
 
-**Previous milestone:** Step 11 — Music Data & Songs API — completed, verified, committed, and pushed to GitHub.
+**Previous milestone:** Step 12 — Favorites & Playlist APIs — completed, tested, committed, and pushed to GitHub `master`.
 
-The next milestone will implement the APIs for user favorites and playlists.
+The next milestone will implement the Listening History API.
 
 Planned work:
 
-* Review existing favorite and playlist SQLAlchemy models.
-* Review existing Pydantic schemas and database constraints.
-* Define the required API contracts.
-* Implement favorite service and router.
-* Implement playlist service and router.
-* Enforce authentication and user-specific data access.
-* Prevent users from modifying another user's favorites or playlists.
-* Register the routers in `main.py`.
-* Test success cases, invalid requests, and missing resources.
-* Update the README and commit the completed milestone.
+- Review the existing listening-history SQLAlchemy model.
+- Review the existing Pydantic schemas and database constraints.
+- Define API contracts and expected response schemas.
+- Implement the listening-history service and router.
+- Allow authenticated users to record listening history.
+- Allow users to retrieve their own listening history.
+- Ensure users cannot access or modify another user's listening history.
+- Register the router in `main.py`.
+- Test successful requests, invalid input, and missing resources.
+- Update the README and verify all changes before committing.
 
 **Development rule:** Continue from the existing project. Do not recreate the backend setup or implement future features unless requested.
