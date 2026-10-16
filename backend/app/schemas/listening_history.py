@@ -1,13 +1,14 @@
+
 from datetime import datetime
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class ListeningHistoryCreate(BaseModel):
     song_id: UUID
     played_at: datetime
-    duration_seconds: int
+    duration_seconds: int = Field(ge=0)
 
 
 class ListeningHistoryResponse(BaseModel):

@@ -8,6 +8,7 @@ from app.core.config import settings
 from app.api.favorites import router as favorites_router
 from app.api.playlists import router as playlists_router
 from app.api.playlist_songs import router as playlist_songs_router
+from app.api.listening_history import router as listening_history_router
 
 
 app = FastAPI(
@@ -24,3 +25,4 @@ app.include_router(songs_router)
 app.include_router(favorites_router)
 app.include_router(playlists_router)
 app.include_router(playlist_songs_router)
+app.include_router(listening_history_router)
