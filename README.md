@@ -6,8 +6,8 @@ An AI-powered music recommendation application that detects facial emotions and 
 
 - **Current Version:** MVP Version 1
 - **Development Status:** In Progress
-- **Current Backend Progress:** Step 13 — Listening History API completed, tested, committed, and pushed to GitHub
-- **Next Backend Milestone:** Step 14 — Recommendation Logic
+- **Current Backend Progress:** Step 14 — Recommendation Logic implementation in progress; recommendation service committed and pushed to GitHub
+- **Next Backend Milestone:** Step 14 — Complete recommendation logic validation and documentation
 - **Frontend Integration:** Not started yet
 
 ---
@@ -357,6 +357,37 @@ Both endpoints require a valid Supabase access token.
 - [x] GitHub push completed
 - [x] Local working tree verified clean
 
+
+### Step 14 — Recommendation Logic
+
+#### Recommendation Service
+- [x] Existing Recommendation model and schema reviewed
+- [x] Songs, favorites, and listening-history models reviewed
+- [x] `recommendation_service.py` created
+- [x] Personalized recommendation logic implemented
+- [x] Favorite song emotions and genres used to identify preferences
+- [x] Empty and spaces-only song titles excluded
+- [x] Favorited and previously played songs excluded
+- [x] Fallback recommendations implemented
+- [x] Recommendation limit validation implemented
+
+#### Validation and Testing
+- [x] Recommendation service import verified
+- [x] Database recommendation query tested
+- [x] Blank-title filtering tested
+- [x] Duplicate recommendation prevention tested
+- [x] Zero and negative limits tested
+- [x] Favorite exclusion tested
+- [x] Listening-history exclusion tested for two users
+- [ ] Additional edge cases and fallback behavior verified
+- [ ] Recommendation service final review completed
+
+#### Git Checkpoint
+- [x] Recommendation service committed
+- [x] Recommendation service pushed to GitHub `master`
+- [ ] README changes committed and pushed
+
+
 ---
 
 ## Upcoming Backend Work
@@ -364,7 +395,7 @@ Both endpoints require a valid Supabase access token.
 - [x] Step 11 — Music Data and Songs API
 - [x] Step 12 — Favorites and Playlist APIs
 - [x] Step 13 — Listening History API
-- [ ] Step 14 — Recommendation Logic
+- [ ] Step 14 — Recommendation Logic (final validation and review pending)
 - [ ] Step 15 — MobileNetV2 Model Integration
 - [ ] Step 16 — Emotion Prediction API
 - [ ] Step 17 — Recommendation API
@@ -715,20 +746,26 @@ The GitHub repository is the shared source of truth for the project.
 
 ---
 
+
 # Current Next Task
 
 ## Backend — Step 14: Recommendation Logic
 
 **Previous milestone:** Step 13 — Listening History API — completed, tested, committed, and pushed to GitHub `master`.
 
-Planned work:
+**Current progress:** Recommendation service implemented, tested, committed, and pushed to GitHub `master`. README progress documentation is being updated.
 
-- Review the existing recommendation model and schema.
-- Review songs, favorites, and listening-history data structures.
-- Define the recommendation rules and API contract before implementation.
-- Build basic personalized recommendations using existing data.
-- Keep the implementation modular and compatible with the current backend.
-- Test recommendation behavior with available database records.
-- Update the README and verify changes before committing.
+**Remaining work:**
+- Complete additional edge-case and fallback behavior tests.
+- Perform a final review of recommendation logic.
+- Finish README updates and verify the changes.
+- Commit and push the README updates.
 
-**Development rule:** Continue from the existing project. Do not recreate the backend setup or implement future features unless requested. Work one step at a time and verify each result before proceeding.
+**Next milestone:** Step 15 — MobileNetV2 Model Integration.
+
+**Development rules:**
+- Continue from the existing project; do not recreate the backend setup.
+- Do not implement future features unless requested.
+- Work one step at a time and verify each result before proceeding.
+- Whenever a Python package is installed, update `backend/requirements.txt`.
+- Use visible `python -c` checks for Python import or functionality verification.
