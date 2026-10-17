@@ -379,8 +379,8 @@ Both endpoints require a valid Supabase access token.
 - [x] Zero and negative limits tested
 - [x] Favorite exclusion tested
 - [x] Listening-history exclusion tested for two users
-- [ ] Additional edge cases and fallback behavior verified
-- [ ] Recommendation service final review completed
+- [x] Additional edge cases and fallback behavior verified
+- [x] Recommendation service final review completed
 
 #### Git Checkpoint
 - [x] Recommendation service committed
