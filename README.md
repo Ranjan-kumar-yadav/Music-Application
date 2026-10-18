@@ -409,24 +409,27 @@ Both endpoints require a valid Supabase access token.
 
 # Frontend Progress
 
-Frontend development is managed separately.
+# Frontend Progress
 
-Frontend folder:
+Frontend development is managed inside the `frontend/` directory.
 
-```text
-frontend/
-```
+### Completed
+- [x] React + Vite project setup
+- [x] Tailwind CSS installation and configuration
+- [x] Initial Renix UI rendered and verified in the browser
+- [x] Frontend folder structure created
+- [x] Initial frontend Git checkpoint committed and pushed
+- [x] Reusable UI components (Button and Navbar created and tested)
 
-- [ ] React + Vite setup
-- [ ] Tailwind CSS setup
-- [ ] UI development
-- [ ] Webcam interface
-- [ ] Emotion result UI
-- [ ] Music recommendation UI
+### In Progress
+- [ ] Application routing and shared layouts
+- [ ] Landing page
+- [ ] Sign Up and Sign In pages
+- [ ] Home and music discovery pages
+- [ ] Music player, favorites, playlists, and history
+- [ ] Emotion detection and recommendation UI
 - [ ] FastAPI integration
-- [ ] Final frontend testing
-
----
+- [ ] Responsive design and final testing
 
 # Project Structure
 
@@ -437,6 +440,20 @@ Music-App/
 ├── README.md
 ├── .gitignore
 ├── frontend/
+    ├── public/
+    ├── src/
+    │   ├── assets/
+    │   ├── components/
+    │   ├── layouts/
+    │   ├── pages/
+    │   ├── services/
+    │   ├── App.jsx
+    │   ├── App.css
+    │   ├── index.css
+    │   └── main.jsx
+    ├── package.json
+    ├── package-lock.json
+    └── vite.config.js
 └── backend/
     ├── .env
     ├── .env.example
