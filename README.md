@@ -409,27 +409,40 @@ Both endpoints require a valid Supabase access token.
 
 # Frontend Progress
 
-# Frontend Progress
+Frontend development is in progress using React, Vite, and Tailwind CSS.
 
-Frontend development is managed inside the `frontend/` directory.
+## Completed
 
-### Completed
-- [x] React + Vite project setup
-- [x] Tailwind CSS installation and configuration
-- [x] Initial Renix UI rendered and verified in the browser
-- [x] Frontend folder structure created
-- [x] Initial frontend Git checkpoint committed and pushed
-- [x] Reusable UI components (Button and Navbar created and tested)
+- [x] React + Vite frontend setup
+- [x] Tailwind CSS setup
+- [x] Renix landing page UI
+- [x] Responsive layout for the landing page
+- [x] Reusable Button component
+- [x] Navbar component with Sign In navigation
+- [x] SongCard component
+- [x] MoodCard component
+- [x] Sign In page UI
+- [x] Sign Up page UI
+- [x] Navigation between Home, Sign In, and Sign Up
+- [x] Frontend changes committed and pushed to GitHub `master`
 
-### In Progress
-- [ ] Application routing and shared layouts
-- [ ] Landing page
-- [ ] Sign Up and Sign In pages
-- [ ] Home and music discovery pages
-- [ ] Music player, favorites, playlists, and history
-- [ ] Emotion detection and recommendation UI
+## In Progress / Planned
+
+- [ ] Discover and Music Library pages
+- [ ] Song search and filtering UI
+- [ ] Music Player UI
+- [ ] Favorites and Playlists pages
+- [ ] Listening History page
+- [ ] Emotion Detection UI
+- [ ] Music recommendation UI
+- [ ] User Profile and Admin Dashboard
 - [ ] FastAPI integration
-- [ ] Responsive design and final testing
+- [ ] Connect authentication UI to the authentication flow
+- [ ] Frontend testing and final polish
+
+**Note:** Sign In and Sign Up currently provide the frontend UI and navigation. Actual authentication integration is not yet completed.
+
+---
 
 # Project Structure
 
@@ -444,8 +457,14 @@ Music-App/
     ├── src/
     │   ├── assets/
     │   ├── components/
+    |   |   ├── Button.jsx
+    |   |   ├── Navbar.jsx
+    |   |   ├── SongCard.jsx
+    |   |   └── MoodCard.jsx
     │   ├── layouts/
     │   ├── pages/
+    |   |   ├── SignIn.jsx
+    |   |   └── SignUp.jsx
     │   ├── services/
     │   ├── App.jsx
     │   ├── App.css
