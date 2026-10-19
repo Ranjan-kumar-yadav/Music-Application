@@ -1,7 +1,7 @@
 
 import Button from './Button'
 
-function Navbar() {
+function Navbar({ onSignIn }) {
   const navLinks = [
     { label: 'Home', href: '#home' },
     { label: 'Discover', href: '#discover' },
@@ -30,7 +30,7 @@ function Navbar() {
           ))}
         </div>
 
-        <Button onClick={() => console.log('Sign in clicked')}>
+        <Button onClick={onSignIn}>
           Sign In
         </Button>
       </nav>
