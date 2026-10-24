@@ -5,6 +5,8 @@ function SongCard({
   mood = 'Chill',
   artwork = 'from-emerald-500/30 via-green-900/40 to-[#101411]',
   onPlay,
+  isFavorite = false,
+  onToggleFavorite,
 }) {
   return (
     <article className="group min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-3 transition duration-300 hover:-translate-y-1 hover:border-green-400/30 hover:bg-white/[0.06]">
@@ -20,6 +22,17 @@ function SongCard({
         <span className="absolute left-3 top-3 rounded-full border border-white/10 bg-black/30 px-2.5 py-1 text-xs text-white/80 backdrop-blur">
           {mood}
         </span>
+        <button
+  type="button"
+  onClick={onToggleFavorite}
+  aria-label={isFavorite ? `Remove ${title} from favorites` : `Add ${title} to favorites`}
+  aria-pressed={isFavorite}
+  className={`absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-black/40 text-xl backdrop-blur transition hover:scale-110 ${
+    isFavorite ? 'text-green-400' : 'text-white hover:text-green-400'
+  }`}
+>
+  {isFavorite ? '♥' : '♡'}
+</button>
 
         <button
           type="button"

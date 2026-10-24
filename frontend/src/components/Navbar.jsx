@@ -5,6 +5,8 @@ function Navbar({ onSignIn, onNavigate, currentPage }) {
   const navLinks = [
     { label: 'Home', page: 'home' },
     { label: 'Discover', page: 'discover' },
+    { label: 'Library', page: 'library' },
+    { label: 'Favorites', page: 'favorites' },
   ]
 
   return (
@@ -24,6 +26,7 @@ function Navbar({ onSignIn, onNavigate, currentPage }) {
               key={link.page}
               type="button"
               onClick={() => onNavigate?.(link.page)}
+              aria-current={currentPage === link.page ? 'page' : undefined}
               className={`text-sm transition hover:text-green-400 ${
                 currentPage === link.page
                   ? 'font-semibold text-green-400'

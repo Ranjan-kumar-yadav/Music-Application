@@ -1,12 +1,13 @@
 
 import { useState } from 'react'
-
+import Library from './pages/Library'
 import Button from './components/Button'
 import Navbar from './components/Navbar'
 import SongCard from './components/SongCard'
 import MoodCard from './components/MoodCard'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
+import Favorites from './pages/Favorites'
 
 const songs = [
   {
@@ -65,7 +66,32 @@ function App() {
   const [currentPage, setCurrentPage] = useState('home')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedMood, setSelectedMood] = useState('All')
+  const [favoriteSongs, setFavoriteSongs] = useState([])
+  const [currentSong, setCurrentSong] = useState(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const toggleFavorite = (song) => {
+    setFavoriteSongs((previousFavorites) => {
+      const alreadyFavorite = previousFavorites.some(
+        (favorite) => favorite.title === song.title
+      )
 
+      if (alreadyFavorite) {
+        return previousFavorites.filter(
+          (favorite) => favorite.title !== song.title
+        )
+      }
+
+      return [...previousFavorites, song]
+    })
+  }
+  if (currentPage === 'favorites') {
+    return (
+      <Favorites
+        songs={favoriteSongs}
+        onToggleFavorite={toggleFavorite}
+      />
+    )
+  }
   if (currentPage === 'signin') {
     return <SignIn />
   }
@@ -140,11 +166,10 @@ function App() {
               <button
                 type="button"
                 onClick={() => setSelectedMood('All')}
-                className={`text-sm transition hover:text-green-300 ${
-                  selectedMood === 'All'
-                    ? 'text-green-400'
-                    : 'text-gray-400'
-                }`}
+                className={`text-sm transition hover:text-green-300 ${selectedMood === 'All'
+                  ? 'text-green-400'
+                  : 'text-gray-400'
+                  }`}
               >
                 Show all songs
               </button>
@@ -154,11 +179,10 @@ function App() {
               {moods.map((mood) => (
                 <div
                   key={mood}
-                  className={`rounded-2xl transition ${
-                    selectedMood === mood
-                      ? 'ring-2 ring-green-400'
-                      : ''
-                  }`}
+                  className={`rounded-2xl transition ${selectedMood === mood
+                    ? 'ring-2 ring-green-400'
+                    : ''
+                    }`}
                 >
                   <MoodCard
                     mood={mood}
@@ -198,9 +222,12 @@ function App() {
                     artist={song.artist}
                     mood={song.mood}
                     artwork={song.artwork}
-                    onPlay={() =>
-                      console.log('Selected song:', song.title)
-                    }
+                    isFavorite={favoriteSongs.some((favorite) => favorite.title === song.title)}
+                    onToggleFavorite={() => toggleFavorite(song)}
+                    onPlay={() => {
+                      setCurrentSong(song)
+                      setIsPlaying(true)
+                    }}
                   />
                 ))}
               </div>
@@ -228,6 +255,8 @@ function App() {
             )}
           </div>
         </section>
+      ) : currentPage === 'library' ? (
+        <Library songs={songs} />
       ) : (
         <>
           <section
@@ -373,9 +402,12 @@ function App() {
                   <SongCard
                     key={song.title}
                     {...song}
-                    onPlay={() =>
-                      console.log('Selected song:', song.title)
-                    }
+                    isFavorite={favoriteSongs.some((favorite) => favorite.title === song.title)}
+                    onToggleFavorite={() => toggleFavorite(song)}
+                    onPlay={() => {
+                      setCurrentSong(song)
+                      setIsPlaying(true)
+                    }}
                   />
                 ))}
               </div>
@@ -425,6 +457,45 @@ function App() {
             </div>
           </section>
         </>
+      )}
+            {currentSong && (
+        <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-[#101411]/95 px-4 py-3 shadow-2xl backdrop-blur-lg sm:px-6">
+          <div className="mx-auto flex max-w-7xl items-center gap-3 sm:gap-5">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-green-400/30 to-emerald-900/50 text-2xl text-green-300">
+              ♫
+            </div>
+
+            <div className="min-w-0 flex-1">
+              <p className="truncate font-semibold text-white">
+                {currentSong.title}
+              </p>
+              <p className="truncate text-sm text-gray-400">
+                {currentSong.artist}
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setIsPlaying((playing) => !playing)}
+              aria-label={isPlaying ? 'Pause song' : 'Play song'}
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-green-400 text-black transition hover:bg-green-300"
+            >
+              {isPlaying ? 'Ⅱ' : '▶'}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setCurrentSong(null)
+                setIsPlaying(false)
+              }}
+              aria-label="Close player"
+              className="shrink-0 px-2 py-2 text-xl text-gray-400 transition hover:text-white"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
       )}
     </main>
   )
